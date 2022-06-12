@@ -2,6 +2,7 @@ package com.mpernal.recruitmenttask.controller;
 
 import com.mpernal.recruitmenttask.dto.BookDto;
 import com.mpernal.recruitmenttask.dto.IBookDto;
+import com.mpernal.recruitmenttask.dto.PaginatedDataWrapper;
 import com.mpernal.recruitmenttask.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -21,9 +22,12 @@ public class BookController {
 
 
     @Operation(summary = "Get all books")
-    @GetMapping("/")
-    public ResponseEntity<List<IBookDto>> getAll(){
-        return ResponseEntity.ok(bookService.findAll());
+    @GetMapping("/all")
+    public ResponseEntity<PaginatedDataWrapper<IBookDto>> getAll(@RequestParam Integer page,
+                                                                 @RequestParam Integer pageSize,
+                                                                 @RequestParam(required = false) String orderBy,
+                                                                 @RequestParam(required = false) String orderDirection){
+        return ResponseEntity.ok(bookService.findAll(page, pageSize, orderBy, orderDirection));
     }
 
     @Operation(summary = "Get book by ID")

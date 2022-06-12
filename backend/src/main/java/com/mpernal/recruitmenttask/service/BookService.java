@@ -2,9 +2,11 @@ package com.mpernal.recruitmenttask.service;
 
 import com.mpernal.recruitmenttask.dto.BookDto;
 import com.mpernal.recruitmenttask.dto.IBookDto;
+import com.mpernal.recruitmenttask.dto.PaginatedDataWrapper;
 import com.mpernal.recruitmenttask.mapper.BookMapper;
 import com.mpernal.recruitmenttask.model.Book;
 import com.mpernal.recruitmenttask.repository.BookRepository;
+import com.mpernal.recruitmenttask.utils.SQLUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,9 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<IBookDto> findAll() {
-        return bookRepository.findAllProjectedBy(IBookDto.class);
+    public PaginatedDataWrapper<IBookDto> findAll(Integer page, Integer pageSize, String orderBy, String orderDirection) {
+        List<IBookDto> books = bookRepository.findAllProjectedBy(IBookDto.class, SQLUtils.getPageRequest(page, pageSize, orderBy, orderDirection));
+        return new PaginatedDataWrapper<>(books, bookRepository.count());
     }
 
     public BookDto findById(Long bookId) {
