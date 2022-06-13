@@ -11,7 +11,7 @@
     <groupId>com.mpernal</groupId>
     <artifactId>recruitment-task</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>recruitment-task</name>
     <description>recruitment-task</description>
     <properties>
@@ -78,6 +78,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>com.mpernal.recruitmenttask.RecruitmentTaskApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -86,6 +87,7 @@
                     </excludes>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
