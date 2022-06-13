@@ -1,13 +1,15 @@
 import {Button, Card, Grid} from "@mui/material";
 import {StyledH3} from "../../components/text/StyledH";
 import BooksTable from "../../components/table/BooksTable";
-import {BookDto, initialBookDto} from "../../models/BookDto";
+import {BookDto} from "../../models/BookDto";
 import {useState} from "react";
 import BookDialog from "../../components/dialogs/BookDialog";
+import {useSnackbar} from "notistack";
 
 const BooksPage = ()=>{
     const [toEditBook, setToEditBook] = useState<BookDto|null>(null);
     const [openDialog, setOpenDialog] = useState<boolean>(false);
+    const {enqueueSnackbar} = useSnackbar();
 
     const onDelete = (book :BookDto)=>{
 
