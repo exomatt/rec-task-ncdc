@@ -1,14 +1,18 @@
 import {BookDto} from "../../models/BookDto";
 import BookService from "../../services/BookService";
 import MaterialTable, {Action, Query, QueryResult} from "@material-table/core";
+import React from "react";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 interface BooksTableProps {
     onDelete: (book: BookDto) => void;
     onEdit: (book: BookDto) => void;
+    tableRef:React.RefObject<any> | React.MutableRefObject<undefined>;
 }
 
 const BooksTable = (props: BooksTableProps) => {
-    const {onEdit, onDelete} = props
+    const {onEdit, onDelete,tableRef} = props
     const columns = [
         {
             title: 'Author',
@@ -26,12 +30,13 @@ const BooksTable = (props: BooksTableProps) => {
 
     const actions :Action<BookDto>[] = [
         {
-            icon: 'edit',
+            icon: ()=><EditIcon/>,
             tooltip: 'Edit book',
-            onClick: (event: any, rowData: BookDto|BookDto[]) => onEdit(rowData as BookDto)
+            onClick: (event: any, rowData: BookDto|BookDto[]) => onEdit(rowData as BookDto),
+
         },
         {
-            icon: 'delete',
+            icon: ()=><DeleteIcon/>,
             tooltip: 'Delete book',
             onClick: (event: any, rowData: BookDto|BookDto[]) => onDelete(rowData as BookDto ),
         }
@@ -56,6 +61,7 @@ const BooksTable = (props: BooksTableProps) => {
             data={(query: Query<BookDto>) => loadData(query)}
             style={{minWidth: '800px'}}
             actions={actions}
+            tableRef={tableRef}
         />
 
     )

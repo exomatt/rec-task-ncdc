@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/book")
@@ -38,20 +38,20 @@ public class BookController {
 
     @Operation(summary = "Create new book")
     @PostMapping("/")
-    public ResponseEntity<BookDto> saveBook(@RequestBody BookDto bookDto){
+    public ResponseEntity<BookDto> saveBook(@Valid @RequestBody BookDto bookDto) {
         return ResponseEntity.ok(bookService.save(bookDto));
     }
 
     @Operation(summary = "Update book")
     @PutMapping("/")
-    public ResponseEntity<BookDto> updateBook(@RequestBody BookDto bookDto){
+    public ResponseEntity<BookDto> updateBook(@Valid @RequestBody BookDto bookDto) {
         return ResponseEntity.ok(bookService.update(bookDto));
     }
 
     @Operation(summary = "Delete book by ID")
     @ApiResponses()
     @DeleteMapping("/{bookId}")
-    public ResponseEntity<BookDto> deleteBook(@PathVariable Long bookId){
+    public ResponseEntity<Void> deleteBook(@PathVariable Long bookId) {
         bookService.delete(bookId);
         return ResponseEntity.ok().build();
     }

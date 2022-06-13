@@ -1,3 +1,5 @@
+import {VALIDATION_ERROR} from "./Messages";
+
 export interface Validation {
     isError: boolean,
     errorText: string,
@@ -32,5 +34,5 @@ export const isError = (validators: Map<string, Validation>, fieldName: string):
 }
 
 export const getValidationErrorMessage = () => {
-    return "Validation error. Fix highlight inputs"
+    return VALIDATION_ERROR
 }

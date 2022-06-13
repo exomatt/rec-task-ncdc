@@ -1,4 +1,3 @@
-
 import {BookDto} from "../models/BookDto";
 import {api} from "../config/api";
 import {PaginatedDataWrapper} from "../models/PaginatedDataWrapper";
@@ -16,6 +15,18 @@ class BookService {
             }
         })
         return response.data
+    }
+
+    static createBook = async (bookDto: BookDto): Promise<void> => {
+        return await api.post("/book/", bookDto)
+    }
+
+    static updateBook = async (bookDto: BookDto): Promise<void> => {
+        return await api.put("/book/", bookDto)
+    }
+
+    static deleteBook = async (bookId: number): Promise<void> => {
+        return await api.delete(`/book/${bookId}`)
     }
 }
 

@@ -1,0 +1,5 @@
+export const SUCCESS_DELETED_BOOK = "Successfully deleted book"
+export const SUCCESS_SAVED_BOOK = "Successfully saved book"
+export const ERROR_SAVE_BOOK = "Problem with book save method"
+export const ERROR_DELETE_BOOK = "Problem with book delete method"
+export const VALIDATION_ERROR = "Validation error. Fix highlight inputs"
