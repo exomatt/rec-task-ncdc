@@ -9,7 +9,11 @@ import NotFound from "./pages/errors/NotFound";
 function App() {
     return (
         <div className="App">
-            <SnackbarProvider maxSnack={3}>
+            <SnackbarProvider maxSnack={3}
+                              anchorOrigin={{
+                                  vertical: 'bottom',
+                                  horizontal: 'right',
+                              }}>
 
                 <Container maxWidth="xl">
                     <BrowserRouter>
